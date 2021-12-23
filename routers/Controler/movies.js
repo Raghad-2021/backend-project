@@ -2,14 +2,25 @@ const moviesModels = require ("../../db/models/moviesModels");
 
 const getmovies = async (req, res) => {
     
+    try {
+        const movies = await moviesModels.find({}).populate("userId");
+        // تبحث لي على جميع الاوبجكت الي بالاسكيما
+        // populate تجيب لي user
+        res.status(200).json(movies);
+      } catch (error) {
+        res.send(error);
+      }
 };
 
 const postmovies = async (req, res) => {
-    const {name, img,description } = req.body;
+    const {name, img,description,userId } = req.body;
     const newmovies = new moviesModels({
         name,
         img,
-        description
+        description,
+        userId,
+
+        
     })
     try {
         const savemovies = await newmovies.save();
@@ -19,6 +30,7 @@ const postmovies = async (req, res) => {
         res.send(error);
     }
 };
+console.log("data");
 
 
 

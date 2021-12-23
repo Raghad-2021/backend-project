@@ -11,7 +11,7 @@ const logIn = async (req, res) => {
       if (check === true) {
         const payload = { userId: user._id, userName: user.name };
         const token = jwt.sign(payload, "ABC");
-        res.status(200).json({ token });
+        res.status(200).json({ token, user });
       } else {
         res.status(403).json("wrong PassWord!");
       }
