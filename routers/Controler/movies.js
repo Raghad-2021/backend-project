@@ -12,6 +12,9 @@ const getmovies = async (req, res) => {
       }
 };
 
+console.log("data");
+
+
 const postmovies = async (req, res) => {
     const {name, img,description,userId } = req.body;
     const newmovies = new moviesModels({
@@ -19,8 +22,6 @@ const postmovies = async (req, res) => {
         img,
         description,
         userId,
-
-        
     })
     try {
         const savemovies = await newmovies.save();
@@ -30,8 +31,8 @@ const postmovies = async (req, res) => {
         res.send(error);
     }
 };
-console.log("data");
 
 
 
-module.exports = { getmovies, postmovies ,};
+
+module.exports = { getmovies, postmovies };

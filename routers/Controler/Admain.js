@@ -1,20 +1,14 @@
+const moviesModels = require ("../../db/models/moviesModels");
 const userModel = require("../../db/models/userModel");
-const bcrypt = require("bcrypt");
-const Admin = async (req, res) => {
-  let { name, email, pass } = req.body;
-  console.log({ name, email, pass });
-  try {
-    pass = await bcrypt.hash(pass, 10);
-    const newUser = new userModel({
-      name,
-      email,
-      pass,
-    });
-    const result = await newUser.save();
-    res.status(201).json(result);
-  } catch (error) {
-    res.send(error);
-  }
-};
-module.exports = { Admin };
- 
+
+
+exports.adminAuth = async (req,res , next) => {
+
+  const {userId} = req.body;
+   // ناخذ اليوزر id من البودي 
+  const user = await userModel.findById(userId)
+   // علشان يجيب بيانات اليوزر عشان نعرف هل هو ادمن او لا
+  if(user && user.role == 'admin') return next();
+
+  res.status(401).json("You are not allowed to post a movie");
+}

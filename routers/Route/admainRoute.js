@@ -1,8 +1,8 @@
-const express = require("express");
-const admainRoute = express.Router();
+// const express = require("express");
+// const admainRoute = express.Router();
 
-const { Admin } = require("../Controler/admain");
+// const { admain } = require("../Controler/admain");
 
-admainRoute.post("/admain", Admin);
+// admainRoute.post("/admain", admain);
 
-module.exports = admainRoute;
+// module.exports = admainRoute;
