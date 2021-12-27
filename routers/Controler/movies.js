@@ -32,7 +32,18 @@ const postmovies = async (req, res) => {
     }
 };
 
+const deleteMovies = async (req, res) => {
+    const id = req.params.id;
+    const userId = req.token.userId;
 
+    try {
+      const movies = await moviesModels.findOneAndDelete({ _id: id, user: userId })
 
+        res.send(movies);
+    } catch (error) {
+      res.send(error);
+    }
+  };
+console.log("hhhhh");
 
-module.exports = { getmovies, postmovies };
+module.exports = { getmovies, postmovies,deleteMovies };
