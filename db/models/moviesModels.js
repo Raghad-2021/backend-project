@@ -5,6 +5,8 @@ const moviesModels = new mongoose.Schema({
   img: { type: String },
   description: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "userModel" },
+    comment:{type:Array},
+
 });
 
 module.exports = mongoose.model("moviesModels", moviesModels);

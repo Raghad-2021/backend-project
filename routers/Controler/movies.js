@@ -16,12 +16,14 @@ console.log("data");
 
 
 const postmovies = async (req, res) => {
-    const {name, img,description,userId } = req.body;
+    const {name, img,description,userId,comment} = req.body;
     const newmovies = new moviesModels({
         name,
         img,
         description,
         userId,
+        comment,
+        
     })
     try {
         const savemovies = await newmovies.save();
@@ -44,6 +46,43 @@ const deleteMovies = async (req, res) => {
       res.send(error);
     }
   };
-console.log("hhhhh");
 
-module.exports = { getmovies, postmovies,deleteMovies };
+
+const getComment = async (req, res)=> {
+  const id = req.params.id
+  console.log("------" , id);
+  try {
+  
+    const comment = await moviesModels.findById(id)//.populate("user");
+    console.log(comment);
+    res.status(200).json(comment);
+  } catch (error) {
+    res.send(error);
+  }
+}
+
+
+
+const addComment = (req, res) => {
+  const { comment } = req.body;
+  const id = req.params.id;
+  console.log(id,"id")
+
+  const user = req.token.userId;
+  const userName=req.token.userName;
+  moviesModels
+    .findOneAndUpdate({ _id: id }, { $push: { comment: {comment, userName} }  },{
+      new: true
+
+    })
+    .then((result) => {
+   
+      res.send(result.comment);
+    }).catch(err=>{
+      res.send(err)
+    });
+};
+console.log("comment6");
+
+
+module.exports = { getmovies, postmovies,deleteMovies,getComment, addComment };

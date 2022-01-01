@@ -2,13 +2,16 @@ const express = require("express");
 const { adminAuth } = require("../Controler/admain");
 const moviesRoute = express.Router();
 
-const { getmovies, postmovies, deleteMovies} = require("../Controler/movies");
+const { getmovies, postmovies, deleteMovies,getComment, addComment} = require("../Controler/movies");
 const { authentication } = require("../midlleWare/authentication");
 
 moviesRoute.get("/movies", authentication, getmovies);
 // سوينا ميدلوير يشيك على نوعه
 moviesRoute.post("/movies", authentication, adminAuth ,  postmovies);
 moviesRoute.delete("/movies/:id", authentication, deleteMovies);
+moviesRoute.post("/Comment/:id", authentication, addComment);
+moviesRoute.get("/Comment/:id",authentication, getComment);
+
 
 
 
