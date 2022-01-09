@@ -12,3 +12,5 @@ exports.adminAuth = async (req,res , next) => {
 
   res.status(401).json("You are not allowed to post a movie");
 }
+
+

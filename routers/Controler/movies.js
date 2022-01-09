@@ -66,7 +66,7 @@ const getComment = async (req, res)=> {
 const addComment = (req, res) => {
   const { comment } = req.body;
   const id = req.params.id;
-  console.log(id,"id")
+  // console.log(id,"id")
 
   const user = req.token.userId;
   const userName=req.token.userName;
@@ -83,6 +83,25 @@ const addComment = (req, res) => {
     });
 };
 console.log("comment6");
+
+
+
+// const deleteComment = (req, res) => {
+//   const { comment } = req.body;
+//   const id = req.params.id;
+//   const user = req.token.userId;
+//   const userName=req.token.userName
+//   moviesModels
+//     .findOneAndUpdate({ _id: id }, { $pull: { comment: {comment, userName} } },{
+//       new: true
+//     })
+//     .then((result) => {
+//       // console.log(result,"resulttt")
+//       res.send(result.comment);
+//     }).catch(err=>{
+//       res.send(err)
+//     });
+// };
 
 
 module.exports = { getmovies, postmovies,deleteMovies,getComment, addComment };

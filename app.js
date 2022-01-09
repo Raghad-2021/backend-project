@@ -9,9 +9,12 @@ app.use(cors());
 const moviesRoute = require("./routers/Route/moviesRoute");
 const sinUpRoute = require("./routers/Route/sinUpRoute");
 const logInRoute = require("./routers/Route/logInRoute");
+const favortRoute = require("./routers/Route/favortRoute");
 
 
 app.use(moviesRoute);
+app.use(favortRoute);
+
 app.use(sinUpRoute);
 app.use(logInRoute);
 
