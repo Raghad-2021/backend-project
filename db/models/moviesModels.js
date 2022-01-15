@@ -6,7 +6,8 @@ const moviesModels = new mongoose.Schema({
   description: { type: String },
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "userModel" },
     comment:{type:Array},
-
-});
+    video: {type: String},
+  
+  });
 
 module.exports = mongoose.model("moviesModels", moviesModels);
