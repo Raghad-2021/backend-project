@@ -12,19 +12,21 @@ const getmovies = async (req, res) => {
       }
 };
 
-console.log("data");
+// console.log("data");
 
 
 const postmovies = async (req, res) => {
-    const {name, img,description,userId,comment} = req.body;
+    const {name, img,description,userId,comment , video} = req.body;
     const newmovies = new moviesModels({
         name,
         img,
         description,
         userId,
         comment,
+        video
         
     })
+    // console.log();
     try {
         const savemovies = await newmovies.save();
         const movies = await moviesModels.find({});
@@ -54,7 +56,7 @@ const getComment = async (req, res)=> {
   try {
   
     const comment = await moviesModels.findById(id)//.populate("user");
-    console.log(comment);
+    // console.log(comment);
     res.status(200).json(comment);
   } catch (error) {
     res.send(error);
@@ -82,7 +84,7 @@ const addComment = (req, res) => {
       res.send(err)
     });
 };
-console.log("comment6");
+// console.log("comment6");
 
 
 
@@ -105,16 +107,17 @@ const deleteComment = (req, res) => {
 
 const postvideo= async (req, res) => {
   const {name, img,description,userId,video} = req.body;
+ 
   const newmovies = new moviesModels({
       name,
       img,
       description,
       userId,
-      video,
+      video:video,
       
   })
   try {
-      const savemovies = await newmovies.save();
+      await newmovies.save();
       const video = await moviesModels.find({});
       res.status(200).json(video);
   } catch (error) {
@@ -126,7 +129,7 @@ const updatemovies = async (req, res) => {
   
   const {id , newName} = req.body;
   
-console.log(id , newName);
+// console.log(id , newName);
   try {
     await moviesModels.findOneAndUpdate({ _id: id }, { name: newName },{ new: true})
     const movies = await moviesModels.find({})

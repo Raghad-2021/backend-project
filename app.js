@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+require('dotenv').config()
 const cors = require("cors");
 require("./db/db");
 app.use(express.json());
@@ -23,7 +24,9 @@ app.use(logInRoute);
 
 
 
+
+console.log(process.env.PORT)
 const Port = 5000;
-app.listen(Port,()=>{
+app.listen(process.env.PORT, ()=>{
     console.log("server is on");
 });

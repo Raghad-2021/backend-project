@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://localhost:27017/netflix").then(
+mongoose.connect(process.env.DB_URL).then(
   () => {
     console.log("DB connected");
   },
-  (err) => {
+  (err) => {+
     console.log(err);
   }
 );
