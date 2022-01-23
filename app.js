@@ -26,6 +26,6 @@ app.use(logInRoute);
 
 
 console.log(process.env.PORT)
-app.listen(process.env.PORT, ()=>{
+app.listen(5000, ()=>{
     console.log("server is on");
 });
